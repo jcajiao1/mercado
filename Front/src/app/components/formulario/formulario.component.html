@@ -1,0 +1,35 @@
+<h2>registro de productos</h2>
+
+<form #productoformulario="ngForm"(ngSubmit)="FormularioUp()">
+    <!-- #productoformulario="ngForm" indicamos que el formulario con este  ID es un formulario angular
+    ng submit="formularioup indicamos que en el formulario " -->
+    <label>Nombre:</label><br>
+    <input id="nombre" name="nombre" type="text"placeholder="ingrese el nombre del producto"required #nombre="ngModel"[(ngModel)]="Producto.nombre">
+    <label>Marca:</label><br>
+    <input id="marca" name="marca" type="text"placeholder="ingrese el nombre del la marca"required #marca="ngModel"[(ngModel)]="Producto.marca">
+    <label>Precio:</label><br>
+    <input id="precio" name="precio" type="number"placeholder="ingrese el precio del producto"required #precio="ngModel"[(ngModel)]="Producto.precio">
+    <label> unidades:</label><br>
+    <input id="unidades" name="unidades" type="number"placeholder="ingrese el nmero de undidades"required #unidades="ngModel"[(ngModel)]="Producto.unidades">
+    <button type="submit">submit</button><br>
+</form>
+
+<div *ngFor="let producto of productosEncontrados"><!-- creamos el contador que recorrel la BD e imprimira las veces que sea necesario -->
+<form #actualizarProductosForm="ngForm">
+    <label>nombre:</label>
+    <input type="text" id="nombre" required #nombre="ngModel"name="nombre"[(ngModel)]="producto.nombre"
+    >
+    <label>marca:</label>
+    <input type="text" id="marca" required #marca="ngModel"name="marca"[(ngModel)]="producto.marca"
+    >
+    <label>precio:</label>
+    <input type="number" id="precio" required #precio="ngModel"name="precio"[(ngModel)]="producto.precio"
+    >
+    <label>unidades:</label>
+    <input type="number" id="unidades" required #unidades="ngModel"name="unidades"[(ngModel)]="producto.unidades"
+
+    >
+ <button (click)="editarProductos(producto)">Actualizar</button>
+      <button (click)="eliminarProductos(producto._id)">Eliminar</button> 
+</form>
+</div>
